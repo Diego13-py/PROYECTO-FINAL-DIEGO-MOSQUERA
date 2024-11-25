@@ -1,0 +1,116 @@
+package biblioteca2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// Clase para manejar los libros
+class ArraYslibro {
+    private ArrayList<String> listaLibros = new ArrayList<>();
+    private ArrayList<String> listaAutores = new ArrayList<>();
+    private ArrayList<Integer> listaEjemplares = new ArrayList<>();
+
+    public void agregarLibro(Scanner scanner) {
+        System.out.println("Título del libro:");
+        String tituloLibro = scanner.nextLine();
+        System.out.println("Nombre del autor:");
+        String autor = scanner.nextLine();
+        System.out.println("Número de ejemplares:");
+        int ejemplares = scanner.nextInt();
+        scanner.nextLine(); 
+
+        listaLibros.add(tituloLibro);
+        listaAutores.add(autor);
+        listaEjemplares.add(ejemplares);
+
+        System.out.println("¡Libro registrado con éxito!");
+    }
+
+    public void mostrarLibros() {
+        System.out.println("\nREGISTRO DE LIBROS:");
+        for (int i = 0; i < listaLibros.size(); i++) {
+            System.out.println("Libro #" + (i + 1));
+            System.out.println("Título: " + listaLibros.get(i));
+            System.out.println("Autor: " + listaAutores.get(i));
+            System.out.println("Ejemplares: " + listaEjemplares.get(i));
+            System.out.println();
+        }
+    }
+}
+
+class ArraYsUsuario {
+    private ArrayList<String> listaNombresUsuarios = new ArrayList<>();
+    private ArrayList<Integer> listaIdentificaciones = new ArrayList<>();
+    private ArrayList<Integer> listaTelefonos = new ArrayList<>();
+
+    public void registrarUsuario(Scanner scanner) {
+        System.out.println("Nombre completo:");
+        String nombreUsuario = scanner.nextLine();
+        System.out.println("Número de identificación:");
+        int identificacion = scanner.nextInt();
+        System.out.println("Número de teléfono:");
+        int telefono = scanner.nextInt();
+        scanner.nextLine(); 
+
+        listaNombresUsuarios.add(nombreUsuario);
+        listaIdentificaciones.add(identificacion);
+        listaTelefonos.add(telefono);
+
+        System.out.println("¡Usuario registrado con éxito!");
+    }
+
+    public void mostrarUsuarios() {
+        System.out.println("\nREGISTRO DE USUARIOS:");
+        for (int i = 0; i < listaNombresUsuarios.size(); i++) {
+            System.out.println("Usuario #" + (i + 1));
+            System.out.println("Nombre: " + listaNombresUsuarios.get(i));
+            System.out.println("Identificación: " + listaIdentificaciones.get(i));
+            System.out.println("Teléfono: " + listaTelefonos.get(i));
+            System.out.println();
+        }
+    }
+}
+
+// Clase principal
+public class BIBLIOTECA2 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArraYslibro arrayLibros = new ArraYslibro(); // Cambio de nombre del objeto
+        ArraYsUsuario arrayUsuarios = new ArraYsUsuario(); // Cambio de nombre del objeto
+
+        int opcion;
+
+        do {
+            System.out.println("\nMENU DE REGISTRO - BIBLIOTECA");
+            System.out.println("Elegir una opción:");
+            System.out.println("1. Agregar libro");
+            System.out.println("2. Registrar usuario");
+            System.out.println("3. Mostrar registro de libros");
+            System.out.println("4. Mostrar registro de usuarios");
+            System.out.println("5. Salir");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (opcion) {
+                case 1:
+                    arrayLibros.agregarLibro(scanner);
+                    break;
+                case 2:
+                    arrayUsuarios.registrarUsuario(scanner);
+                    break;
+                case 3:
+                    arrayLibros.mostrarLibros();
+                    break;
+                case 4:
+                    arrayUsuarios.mostrarUsuarios();
+                    break;
+                case 5:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        } while (opcion != 5);
+    }
+}
